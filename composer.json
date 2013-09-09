@@ -1,0 +1,37 @@
+{
+    "name": "phine/sami-github",
+    "description": "A Sami theme for GitHub Markdown formatted documentation.",
+    "keywords": ["sami", "github"],
+    "homepage": "https://github.com/phine/sami-github",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Herrera",
+            "email": "kevin@herrera.io",
+            "homepage": "http://kevin.herrera.io"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/phine/sami-github/issues"
+    },
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "league/phpunit-coverage-listener": "~1.0",
+        "sami/sami": "~1.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phine\\Sami\\GitHub": "test/source"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
