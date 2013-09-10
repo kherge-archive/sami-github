@@ -1,6 +1,15 @@
 {% extends "layout/base.twig" %}
 
+{% from "macros.twig" import markdown_path %}
+
 {% block title %}
 {% set title = "Interfaces" %}
 {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+{% for interface in classes if interface.interface %}
+- [`{{ interface }}`]({{ markdown_path(class_path(interface)) }})
+{% endfor %}
 {% endblock %}

@@ -1,6 +1,15 @@
 {% extends "layout/base.twig" %}
 
+{% from "macros.twig" import markdown_path %}
+
 {% block title %}
 {% set title = "Namespaces" %}
 {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+{% for namespace in namespaces %}
+- [`{{ namespace }}`]({{ markdown_path(namespace_path(namespace)) }})
+{% endfor %}
 {% endblock %}

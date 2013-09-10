@@ -1,6 +1,15 @@
 {% extends "layout/base.twig" %}
 
+{% from "macros.twig" import markdown_path %}
+
 {% block title %}
 {% set title = "Classes" %}
 {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+{% for class in classes if not class.interface %}
+- [`{{ class }}`]({{ markdown_path(class_path(class)) }})
+{% endfor %}
 {% endblock %}
