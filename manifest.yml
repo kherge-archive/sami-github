@@ -1,0 +1,12 @@
+name: github
+
+global:
+    "pages/namespaces.twig": "Namespaces.md"
+    "pages/interfaces.twig": "Interfaces.md"
+    "pages/classes.twig": "Classes.md"
+
+namespace:
+    "pages/namespace.twig": "%s.md"
+
+class:
+    "pages/class.twig": "%s.md"
