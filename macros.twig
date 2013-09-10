@@ -1,0 +1,5 @@
+{% macro markdown_path(path) %}
+{% spaceless %}
+{{ path|replace({".html": ".md"}) }}
+{% endspaceless %}
+{% endmacro %}
