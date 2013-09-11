@@ -1,6 +1,41 @@
 {% extends "layout/base.twig" %}
 
+{% from "macros.twig" import class_item, class_name, class_type %}
+
 {% block title %}
 {% set title = class %}
 {{ parent() }}
+{% endblock %}
+
+{% block content %}
+{% if class.shortdesc %}
+
+{{ class.shortdesc }}
+{% endif %}
+{% if class.longdesc %}
+
+Description
+-----------
+
+{{ class.longdesc }}
+{% endif %}
+
+Signature
+---------
+
+- It is **{{ class_type(class, true) }}**.
+{% if class.final %}
+- The {{ class_type(class) }} has been marked as **final**.
+{% endif %}
+{% if class.interfaces|length > 1 %}
+- It implements the following interfaces:
+{% for interface in class.interfaces %}
+{{ class_item(interface, false, "    ") }}
+{% endfor %}
+{% elseif class.interfaces|length > 0 %}
+- It implements the {{ class_name(class.interfaces[0], true) }} interface.
+{% endif %}
+{% if class.parent %}
+- It is a subclass of {{ class_name(class.parent, true) }}.
+{% endif %}
 {% endblock %}
