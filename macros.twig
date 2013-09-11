@@ -1,6 +1,25 @@
 {% macro class_item(class, short = false, indent = "") -%}
-{{ indent }}- [`{{ short ? class.shortname : class }}`]({{ _self.markdown_path(class_path(class)) }}){% if class.shortdesc %} &mdash; {{ class.shortdesc }}{% endif %}
+{{ indent }}- {{ _self.class_name(class, short) }}{% if class.shortdesc %} &mdash; {{ class.shortdesc }}{% endif %}
 {%- endmacro %}
+
+{% macro class_name(class, short = false) %}
+{% spaceless %}
+[`{{ short ? class.shortname : class }}`]({% if class.projectclass %}{{ _self.markdown_path(class_path(class)) }}{% else %}http://php.net/class.{{ class }}{% endif %})
+{% endspaceless %}
+{% endmacro %}
+
+{% macro class_type(class, sentence = false) %}
+{% spaceless %}
+{% if class.interface %}
+{% if sentence %}an {% endif %}
+interface
+{%- else -%}
+{% if sentence %}{% if class.abstract %}an{% else %}a{% endif %} {% endif %}
+{% if class.abstract %}abstract {% endif %}
+class
+{%- endif -%}
+{% endspaceless %}
+{% endmacro %}
 
 {% macro markdown_path(path) %}
 {% spaceless %}
