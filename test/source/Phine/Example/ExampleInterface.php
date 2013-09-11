@@ -31,6 +31,16 @@ use IteratorAggregate;
 interface ExampleInterface extends Countable, IteratorAggregate
 {
     /**
+     * Indicates an "off" state.
+     */
+    const OFF = 0;
+
+    /**
+     * Indicates an "on" state.
+     */
+    const ON = 1;
+
+    /**
      * Creates a new class instance and returns it.
      *
      * @return ExampleInterface The new class instance.
