@@ -14,6 +14,18 @@ use Phine\Example\Exception\ExampleException;
 final class Example extends AbstractExample
 {
     /**
+     * The "on" or "off" flag.
+     *
+     * This property accepts either the `ON` or `OFF` constants from the
+     * `ExampleInterface` interface. It also solely exists to demonstrate
+     * what a long description for a property will look like in the
+     * documentation.
+     *
+     * @var integer
+     */
+    public $state;
+
+    /**
      * The arguments provided.
      *
      * @var array
