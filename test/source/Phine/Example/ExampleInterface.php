@@ -32,6 +32,11 @@ interface ExampleInterface extends Countable, IteratorAggregate
 {
     /**
      * Indicates an "off" state.
+     *
+     * This is an example long description for the `OFF` constant in the
+     * `ExampleInterface` interface. Its primary purpose is to demonstrate
+     * how a constant with _and_ without a long description would be shown
+     * in the documentation generated.
      */
     const OFF = 0;
 
