@@ -11,7 +11,7 @@ use Phine\Example\Exception\ExampleException;
  *
  * @author Kevin Herrera <kevin@herrera.io>
  */
-class Example extends AbstractExample
+final class Example extends AbstractExample
 {
     /**
      * The arguments provided.
