@@ -1,3 +1,7 @@
+{% macro class_item(class, short = false, indent = "") -%}
+{{ indent }}- [`{{ short ? class.shortname : class }}`]({{ _self.markdown_path(class_path(class)) }})
+{%- endmacro %}
+
 {% macro markdown_path(path) %}
 {% spaceless %}
 {{ path|replace({".html": ".md"}) }}
