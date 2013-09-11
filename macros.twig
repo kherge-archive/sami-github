@@ -1,5 +1,5 @@
 {% macro class_item(class, short = false, indent = "") -%}
-{{ indent }}- [`{{ short ? class.shortname : class }}`]({{ _self.markdown_path(class_path(class)) }})
+{{ indent }}- [`{{ short ? class.shortname : class }}`]({{ _self.markdown_path(class_path(class)) }}){% if class.shortdesc %} &mdash; {{ class.shortdesc }}{% endif %}
 {%- endmacro %}
 
 {% macro markdown_path(path) %}
