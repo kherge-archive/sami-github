@@ -1,6 +1,6 @@
 {% extends "layout/base.twig" %}
 
-{% from "macros.twig" import markdown_path %}
+{% from "macros.twig" import class_item %}
 
 {% block title %}
 {% set title = "Classes" %}
@@ -9,7 +9,9 @@
 
 {% block content %}
 
+This is a complete list of available classes:
+
 {% for class in classes if not class.interface %}
-- [`{{ class }}`]({{ markdown_path(class_path(class)) }})
+{{ class_item(class) }}
 {% endfor %}
 {% endblock %}

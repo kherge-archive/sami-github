@@ -9,6 +9,8 @@
 
 {% block content %}
 
+This is a complete list of available namespaces:
+
 {% for namespace in namespaces %}
 - [`{{ namespace }}`]({{ markdown_path(namespace_path(namespace)) }})
 {% endfor %}
