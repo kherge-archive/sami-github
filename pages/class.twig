@@ -1,6 +1,6 @@
 {% extends "layout/base.twig" %}
 
-{% from "macros.twig" import class_item, class_name, class_type %}
+{% from "macros.twig" import class_item, class_name, class_type, member_signature %}
 
 {% block title %}
 {% set title = class %}
@@ -54,6 +54,36 @@ This {{ class_type(class) }} defines the following constants:
 ### `{{ constant.name }}` <a name="{{ constant.name }}"></a>
 
 {{ constant.longdesc }}
+{% endfor %}
+{% endif %}
+{% if class.properties %}
+
+Properties
+----------
+
+This {{ class_type(class) }} defines the following properties:
+
+{% for property in class.properties %}
+- [`${{ property.name }}`](#${{ property.name }}){% if property.shortdesc %} &mdash; {{ property.shortdesc }}{% endif %}
+
+{% endfor %}
+{% for property in class.properties %}
+
+### `${{ property.name }}` <a name="{{ property.name }}"></a>
+{% if property.shortdesc %}
+
+{{ property.shortdesc }}
+{% endif %}
+{% if property.longdesc %}
+
+#### Description
+
+{{ property.longdesc }}
+{% endif %}
+
+#### Signature
+
+{{ member_signature("property", property) }}
 {% endfor %}
 {% endif %}
 {% endblock %}

@@ -1,14 +1,14 @@
 {% macro class_item(class, short = false, indent = "") -%}
 {{ indent }}- {{ _self.class_name(class, short) }}{% if class.shortdesc %} &mdash; {{ class.shortdesc }}{% endif %}
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro class_name(class, short = false) %}
-{% spaceless %}
+{% macro class_name(class, short = false) -%}
+{% spaceless -%}
 [`{{ short ? class.shortname : class }}`]({% if class.projectclass %}{{ _self.markdown_path(class_path(class)) }}{% else %}http://php.net/class.{{ class }}{% endif %})
-{% endspaceless %}
-{% endmacro %}
+{%- endspaceless %}
+{%- endmacro -%}
 
-{% macro class_type(class, sentence = false) %}
+{% macro class_type(class, sentence = false) -%}
 {% spaceless %}
 {% if class.interface %}
 {% if sentence %}an {% endif %}
@@ -19,10 +19,59 @@ interface
 class
 {%- endif -%}
 {% endspaceless %}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro markdown_path(path) %}
+{% macro hint(hint) -%}
 {% spaceless %}
-{{ path|replace({".html": ".md"}) }}
+{% if hint.class -%}
+{{ _self.class_name(hint.name) }}
+{%- elseif hint.name -%}
+`{{ hint.name }}{% if hint.array %}[]{% endif %}`
+{%- endif %}
 {% endspaceless %}
-{% endmacro %}
+{%- endmacro -%}
+
+{% macro markdown_path(path) -%}
+{% spaceless %}
+{{- path|replace({".html": ".md"}) -}}
+{% endspaceless %}
+{%- endmacro -%}
+
+{% macro member_signature(type, member) -%}
+- It is a **{{ _self.member_visibility(member) }}** {{ type }}.
+{% if member.final %}
+- It is a **finalized** {{ type }}.
+{% endif %}
+{% if "property" == type %}
+{% if member.hint|length > 1 %}
+- It can be one of the following types:
+{%- for hint in member.hint %}
+
+    - {{ _self.hint(hint) }}
+{%- endfor -%}
+{%- elseif member.hint|length > 0 %}
+- It is a {{ _self.hint(member.hint[0]) }} value.
+{%- else %}
+- Its type is not specified.
+{% endif %}
+{% elseif "method" == type %}
+{% if member.hint|length > 1 %}
+- It can return one of the following values:
+{% for hint in member.hint %}
+
+    - {{ _self.hint(hint) }}
+{%- endfor -%}
+{% elseif member.hint|length > 0 %}
+- It returns a {{ _self.hint(member.hint[0]) }} value.
+{% else %}
+- It does not return anything, or its return value(s) has not been documented.
+{% endif %}
+{% endif %}
+{%- endmacro -%}
+
+{% macro member_visibility(member) -%}
+{% spaceless %}
+{% if member.private %}private{% elseif member.protected %}protected{% else %}public{% endif %}
+{% if member.static %} static{% endif %}
+{% endspaceless %}
+{%- endmacro -%}
