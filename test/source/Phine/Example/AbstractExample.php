@@ -60,6 +60,8 @@ abstract class AbstractExample implements ExampleInterface
      * @throws ExampleException If $created is not an instance of `DateTime`
      *                          and is not an integer value. Numeric strings
      *                          will still strip an exception.
+     *
+     * @see DateTime Just because.
      */
     abstract protected function doSetCreatedDate($created);
 }
