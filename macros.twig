@@ -38,7 +38,7 @@ class
 {%- endmacro -%}
 
 {% macro member_signature(type, member) -%}
-- It is a **{{ _self.member_visibility(member) }}** {{ type }}.
+- It is a **{{ _self.member_visibility(member) }}{% if member.abstract is defined and member.abstract %} abstract{% endif %}** {{ type }}.
 {% if member.final %}
 - It is a **finalized** {{ type }}.
 {% endif %}
@@ -50,11 +50,18 @@ class
     - {{ _self.hint(hint) }}
 {%- endfor -%}
 {%- elseif member.hint|length > 0 %}
-- It is a {{ _self.hint(member.hint[0]) }} value.
+- It is a(n) {{ _self.hint(member.hint[0]) }} value.
 {%- else %}
 - Its type is not specified.
 {% endif %}
 {% elseif "method" == type %}
+{% if member.parameters %}
+- It accepts the following parameter(s):
+{% for parameter in member.parameters %}
+    - `${{ parameter.name }}`{% if parameter.hint %} ({% for hint in parameter.hint %}{{ _self.hint(hint) }}{% if not loop.last %}|{% endif %}{% endfor %}){% endif %}{% if parameter.shortdesc %} &mdash; {{ parameter.shortdesc }}{% endif %}
+
+{% endfor %}
+{% endif %}
 {% if member.hint|length > 1 %}
 - It can return one of the following values:
 {% for hint in member.hint %}
@@ -64,7 +71,13 @@ class
 {% elseif member.hint|length > 0 %}
 - It returns a {{ _self.hint(member.hint[0]) }} value.
 {% else %}
-- It does not return anything, or its return value(s) has not been documented.
+- It does not return anything.
+{% endif %}
+{% if member.exceptions %}
+- It throws one of the following exceptions:
+{% for exception in member.exceptions %}
+    - {{ _self.class_name(exception[0]) }}{% if exception[1] is defined %} &mdash; {{ exception[1] }}{% endif %}
+{% endfor %}
 {% endif %}
 {% endif %}
 {%- endmacro -%}
