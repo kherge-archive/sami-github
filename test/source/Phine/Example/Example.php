@@ -21,7 +21,7 @@ final class Example extends AbstractExample
      * what a long description for a property will look like in the
      * documentation.
      *
-     * @var boolean|integer
+     * @var boolean[]|integer
      */
     public $state;
 
