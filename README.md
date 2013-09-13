@@ -1,8 +1,6 @@
 sami-github
 ====
 
-[![Build Status][]](https://travis-ci.org/phine/sami-github)
-[![Coverage Status][]](https://coveralls.io/r/phine/sami-github)
 [![Latest Stable Version][]](https://packagist.org/packages/phine/sami-github)
 [![Total Downloads][]](https://packagist.org/packages/phine/sami-github)
 
@@ -10,6 +8,37 @@ A Sami theme for GitHub Markdown formatted documentation.
 
 Usage
 -----
+
+```php
+use Sami\Sami;
+use Sami\Version\GitVersionCollection;
+use Symfony\Component\Finder\Finder;
+
+$iterator = Finder::create()
+    ->files()
+    ->name('*.php')
+    ->exclude('Resources')
+    ->exclude('Tests')
+    ->in($dir = '/path/to/symfony/src')
+;
+
+$versions = GitVersionCollection::create($dir)
+    ->addFromTags('v2.0.*')
+    ->add('2.0', '2.0 branch')
+    ->add('master', 'master branch')
+;
+
+return new Sami($iterator, array(
+    'theme'                => 'github',
+    'versions'             => $versions,
+    'title'                => 'Symfony2 API',
+    'build_dir'            => __DIR__.'/../build/sf2/%version%',
+    'cache_dir'            => __DIR__.'/../cache/sf2/%version%',
+    // use a custom theme directory
+    'template_dirs'        => array(__DIR__.'/themes/sami-github'),
+    'default_opened_level' => 2,
+));
+```
 
 Requirement
 -----------
@@ -29,8 +58,6 @@ License
 
 This library is available under the [MIT license](LICENSE).
 
-[Build Status]: https://travis-ci.org/phine/sami-github.png?branch=master
-[Coverage Status]: https://coveralls.io/repos/phine/sami-github/badge.png
 [Latest Stable Version]: https://poser.pugx.org/phine/sami-github/v/stable.png
 [Total Downloads]: https://poser.pugx.org/phine/sami-github/downloads.png
 [Sami]: http://sami.sensiolabs.org/
