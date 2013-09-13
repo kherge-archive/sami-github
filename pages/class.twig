@@ -99,7 +99,6 @@ The {{ class_type(class) }} defines the following methods:
 {% endfor %}
 
 {% for method in class.methods %}
-
 ### `{{ method.name }}()` <a name="{{ method.name }}"></a>
 {% if method.shortdesc %}
 
@@ -123,7 +122,7 @@ The {{ class_type(class) }} defines the following methods:
 
 #### Signature
 
-{{ member_signature("method", method) -}}
+{{ member_signature("method", method) }}
 {% endfor %}
 {% endif %}
 {% endblock %}
