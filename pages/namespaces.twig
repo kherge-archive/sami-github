@@ -12,6 +12,6 @@
 This is a complete list of available namespaces:
 
 {% for namespace in namespaces %}
-- [`{{ namespace }}`]({{ markdown_path(namespace_path(namespace)) }})
+- [`{{ namespace }}`]({{ namespace_path(namespace)|replace({".html": ""}) }})
 {% endfor %}
 {% endblock %}
