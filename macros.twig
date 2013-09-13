@@ -24,7 +24,7 @@ class
 {% macro hint(hint) -%}
 {% spaceless %}
 {% if hint.class -%}
-{{ _self.class_name(hint.name) }}
+{{ _self.class_name(hint.name, true) }}
 {%- elseif hint.name -%}
 `{{ hint.name }}{% if hint.array %}[]{% endif %}`
 {%- endif %}
