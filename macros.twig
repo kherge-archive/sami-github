@@ -66,8 +66,12 @@ class
 
 {% endfor %}
 {% endif %}
-{% if member.hint|length > 1 %}
+{% if (member.hint|length > 1) or member.hintDesc %}
+{% if member.hintDesc %}
+- _Returns:_ {{ member.hintDesc }}
+{% else %}
 - It can return one of the following values:
+{% endif %}
 {% for hint in member.hint %}
     - {{ _self.hint(hint) }}
 {% endfor -%}
