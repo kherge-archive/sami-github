@@ -4,7 +4,11 @@
 
 {% macro class_name(class, short = false) -%}
 {% spaceless -%}
+{% if class.projectclass or class.phpclass %}
 [`{{ short ? class.shortname : class }}`]({% if class.projectclass %}{{ _self.markdown_path(class_path(class)) }}{% else %}http://php.net/class.{{ class }}{% endif %})
+{% else %}
+`{{ class }}`
+{% endif %}
 {%- endspaceless %}
 {%- endmacro -%}
 
