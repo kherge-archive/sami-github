@@ -65,9 +65,8 @@ class
 {% if member.hint|length > 1 %}
 - It can return one of the following values:
 {% for hint in member.hint %}
-
     - {{ _self.hint(hint) }}
-{%- endfor -%}
+{% endfor -%}
 {% elseif member.hint|length > 0 %}
 - It returns a(n) {{ _self.hint(member.hint[0]) }} value.
 {% else %}

@@ -65,6 +65,16 @@ final class Example extends AbstractExample
     }
 
     /**
+     * Returns a random argument.
+     *
+     * @return boolean|integer|string A random argument.
+     */
+    public function getRandom()
+    {
+        return $this->args[rand(0, count($this->args) - 1)];
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function setArgs($boolean, $integer, $string)
