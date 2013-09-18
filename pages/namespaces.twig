@@ -13,5 +13,7 @@ This is a complete list of available namespaces:
 
 {% for namespace in namespaces %}
 - [`{{ namespace }}`]({{ namespace_path(namespace)|replace({".html": ""}) }})
+{% else %}
+- There are no namespaces available.
 {% endfor %}
 {% endblock %}

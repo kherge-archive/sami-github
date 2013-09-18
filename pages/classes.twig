@@ -13,5 +13,7 @@ This is a complete list of available classes:
 
 {% for class in classes if not class.interface %}
 {{ class_item(class) }}
+{% else %}
+- There are no classes available.
 {% endfor %}
 {% endblock %}
