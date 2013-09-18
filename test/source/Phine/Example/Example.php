@@ -57,6 +57,20 @@ final class Example extends AbstractExample
     }
 
     /**
+     * Returns an array of `DateTime` instances.
+     *
+     * @return DateTime[] The dates.
+     */
+    public function getDates()
+    {
+        return array(
+            new DateTime(),
+            new DateTime(),
+            new DateTime(),
+        );
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getIterator()

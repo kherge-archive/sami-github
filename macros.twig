@@ -2,10 +2,10 @@
 {{ indent }}- {{ _self.class_name(class, short) }}{% if class.shortdesc %} &mdash; {{ class.shortdesc }}{% endif %}
 {%- endmacro -%}
 
-{% macro class_name(class, short = false) -%}
+{% macro class_name(class, short = false, suffix = "") -%}
 {% spaceless -%}
 {% if class.projectclass or class.phpclass %}
-[`{{ short ? class.shortname : class }}`]({% if class.projectclass %}{{ _self.markdown_path(class_path(class)) }}{% else %}http://php.net/class.{{ class }}{% endif %})
+[`{{ short ? class.shortname : class }}{{ suffix }}`]({% if class.projectclass %}{{ _self.markdown_path(class_path(class)) }}{% else %}http://php.net/class.{{ class }}{% endif %})
 {% else %}
 `{{ class }}`
 {% endif %}
@@ -28,7 +28,7 @@ class
 {% macro hint(hint) -%}
 {% spaceless %}
 {% if hint.class -%}
-{{ _self.class_name(hint.name, true) }}
+{{ _self.class_name(hint.name, true, hint.array ? "[]" : "") }}
 {%- elseif hint.name -%}
 `{{ hint.name }}{% if hint.array %}[]{% endif %}`
 {%- endif %}
