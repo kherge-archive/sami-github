@@ -3,6 +3,7 @@
 namespace Phine\Example;
 
 use DateTime;
+use Exception;
 use Phine\Example\Exception\ExampleException;
 
 /**
@@ -57,6 +58,7 @@ abstract class AbstractExample implements ExampleInterface
      *
      * @param DateTime|integer $created The date and time.
      *
+     * @throws Exception
      * @throws ExampleException If $created is not an instance of `DateTime`
      *                          and is not an integer value. Numeric strings
      *                          will still strip an exception.

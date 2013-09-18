@@ -76,7 +76,7 @@ class
 {% if member.exceptions %}
 - It throws one of the following exceptions:
 {% for exception in member.exceptions %}
-    - {{ _self.class_name(exception[0]) }}{% if exception[1] is defined %} &mdash; {{ exception[1] }}{% endif %}
+    - {{ _self.class_name(exception[0]) }}{% if exception[1] is defined and exception[1] is not empty %} &mdash; {{ exception[1] }}{% endif %}
 
 {% endfor %}
 {% endif %}
