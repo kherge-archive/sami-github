@@ -1,5 +1,5 @@
-sami-github
-====
+GitHub
+======
 
 [![Latest Stable Version][]](https://packagist.org/packages/phine/sami-github)
 [![Total Downloads][]](https://packagist.org/packages/phine/sami-github)
